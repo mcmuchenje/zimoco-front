@@ -1,13 +1,15 @@
-import NavBar from "../components/NavBar";
+import Categories from "../components/Categories";
+import NavBar from "../components/Navbar";
 import Slider from "../components/Slider";
 
-const HomePage = () => {
+const Home = () => {
     return (
         <div>
             <NavBar />
             <Slider />
+            <Categories />
         </div>    
     )
 }
 
-export default HomePage;
+export default Home;

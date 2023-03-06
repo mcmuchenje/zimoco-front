@@ -3,6 +3,8 @@ import { mobile } from "../responsive"
 import React from "react";
 import { Search, ShoppingCartOutlined } from "@mui/icons-material"
 import { Badge } from "@mui/material";
+import { Link, redirect } from "react-router-dom";
+import AuthService from "../services/auth.service";
 
 const Container = styled.div`
     height: 60px;
@@ -60,7 +62,14 @@ const MenuItem = styled.div`
   ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
 
+const logOut = () => {
+  AuthService.logout();
+  return redirect('/login')
+};
+
 const NavBar = () => {
+  const currentUser = AuthService.getCurrentUser();
+
     return (
         <Container>
             <Wrapper>
@@ -76,8 +85,18 @@ const NavBar = () => {
                     </Logo>
                 </Center>
                 <Right>
-                    <MenuItem>REGISTER</MenuItem>
-                    <MenuItem>LOGIN</MenuItem>
+                  { currentUser ? <>
+                    <Link to="/profile"><MenuItem>PROFILE</MenuItem></Link>
+                    <MenuItem onClick={logOut}>SIGN OUT</MenuItem>
+                  </>
+                     :
+                    <>
+                      <Link to="/register"><MenuItem>REGISTER</MenuItem></Link>
+                      <Link to="/login"><MenuItem>LOGIN</MenuItem></Link>                    
+                    </>
+                    
+                  }
+                    
                     <MenuItem>
                         <Badge badgeContent={4} color="primary">
                             <ShoppingCartOutlined />
