@@ -5,6 +5,8 @@ import Products from "../components/Products";
 import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import { mobile } from "../responsive";
+import { Navigate } from "react-router-dom";
+import AuthService from "../services/auth.service";
 
 const Container = styled.div``;
 
@@ -37,6 +39,12 @@ const Select = styled.select`
 const Option = styled.option``;
 
 const ProductList = () => {
+  const currentUser = AuthService.getCurrentUser();
+
+    if (!currentUser) {
+        return <Navigate to="/login" />;
+    } 
+
   return (
     <Container>
       <Navbar />

@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import { mobile } from "../responsive";
+import { Navigate } from "react-router-dom";
 
 import AuthService from "../services/auth.service";
 
@@ -118,6 +119,11 @@ const Button = styled.button`
 `;
 
 const Product = () => {
+  const currentUser = AuthService.getCurrentUser();
+
+    if (!currentUser) {
+        return <Navigate to="/login" />;
+    } 
 
   return (
     <Container>

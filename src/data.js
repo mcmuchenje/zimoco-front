@@ -25,7 +25,7 @@ export const sliderItems = [
   export const categories = [
     {
       id: 1,
-      img: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fjapanparts.com.bd%2Fproducts%2Ftoyota-air-filter-honda-c-rv&psig=AOvVaw2JCmaI8lyETUYIQEDtIxMA&ust=1678168831623000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCNCA0ZrQxv0CFQAAAAAdAAAAABAE",
+      img: "https://www.supervane.com/122/air-filter-replaces-becker-909507.jpg",
       title: "AIR FILTER!",
     },
     {
@@ -35,7 +35,7 @@ export const sliderItems = [
     },
     {
       id: 3,
-      img: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.amazon.in%2FUAC-Universal-Air-Conditioner-Compressor%2Fdp%2FB00DCDH7UI&psig=AOvVaw19mTZ2vSa34z1ukmYNnuI7&ust=1678168901517000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCPic-bvQxv0CFQAAAAAdAAAAABAE",
+      img: "https://m.media-amazon.com/images/I/71A4pJvWdcL._SX679_.jpg",
       title: "MORE PARTS",
     },
   ];

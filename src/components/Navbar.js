@@ -87,7 +87,9 @@ const NavBar = () => {
                 <Right>
                   { currentUser ? <>
                     <Link to="/profile"><MenuItem>PROFILE</MenuItem></Link>
-                    <MenuItem onClick={logOut}>SIGN OUT</MenuItem>
+                    <Link to='/'>
+                      <MenuItem onClick={logOut}>SIGN OUT</MenuItem>
+                    </Link>
                   </>
                      :
                     <>
