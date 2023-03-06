@@ -39,11 +39,12 @@ const Select = styled.select`
 const Option = styled.option``;
 
 const ProductList = () => {
+
   const currentUser = AuthService.getCurrentUser();
 
-    if (!currentUser) {
-        return <Navigate to="/login" />;
-    } 
+  if(!currentUser) {
+    return <Navigate to="/login" />
+  }
 
   return (
     <Container>
@@ -53,8 +54,8 @@ const ProductList = () => {
       <FilterContainer>
         <Filter>
           <FilterText>Filter Products:</FilterText>
-          <Select>
-            <Option disabled selected>
+          <Select defaultValue={'DEFAULT'}>
+            <Option disabled value="DEFAULT">
               Car
             </Option>
             <Option>Jeep</Option>
@@ -66,8 +67,8 @@ const ProductList = () => {
         </Filter>
         <Filter>
           <FilterText>Sort Products:</FilterText>
-          <Select>
-            <Option selected>Newest</Option>
+          <Select defaultValue={'DEFAULT'}>
+            <Option value="DEFAULT" disabled>Newest</Option>
             <Option>Price (asc)</Option>
             <Option>Price (desc)</Option>
           </Select>

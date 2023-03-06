@@ -3,7 +3,7 @@ import { mobile } from "../responsive"
 import React from "react";
 import { Search, ShoppingCartOutlined } from "@mui/icons-material"
 import { Badge } from "@mui/material";
-import { Link, redirect } from "react-router-dom";
+import { Link, Navigate, redirect } from "react-router-dom";
 import AuthService from "../services/auth.service";
 
 const Container = styled.div`
@@ -75,7 +75,7 @@ const NavBar = () => {
             <Wrapper>
                 <Left>
                     <SearchContainer>
-                        <Input placeholder="Search" />
+                        <Input placeholder="VIN/PART NUMBER" />
                         <Search style={{ color: "gray", fontSize: 16 }} />
                     </SearchContainer>
                 </Left>

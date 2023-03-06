@@ -65,77 +65,35 @@ const Link = styled.a`
   cursor: pointer;
 `;
 
-const Login = () => {
+const Forgot = () => {
   
   let navigate = useNavigate()
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [message, setMessage] = useState(''); 
+  const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const onChangeUsername = (e) => {
-    const username = e.target.value;
-    setUsername(username);
+  const onChangeEmail = (e) => {
+    const email = e.target.value;
+    setEmail(email);
   };
-
-  const onChangePassword = (e) => {
-    const password = e.target.value;
-    setPassword(password);
-  };
-
-  const handleLogin = (e) => {
-    e.preventDefault();
-
-    setMessage("");
-    setLoading(true);
-
-    AuthService.login(username, password).then(
-      () => {
-        navigate("/products");
-        window.location.reload();
-      },
-      (error) => {
-        const resMessage =
-          (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-
-          setLoading(false);
-          setMessage(resMessage);
-        }
-      );
-  }; 
 
   return (
     <Container>
       <Wrapper>
-        <Title>SIGN IN</Title>
-        <Form onSubmit={handleLogin}>
+        <Title>Reset your password</Title>
+        <Form >
           <Input 
             type="text"
-            placeholder="username"
-            name="username"
-            value={username}
-            onChange={onChangeUsername}          
+            placeholder="email"
+            name="email"
+            value={email}         
           />
-          <Input 
-            placeholder="password"
-            name="password"
-            value={password}
-            onChange={onChangePassword}
-            type="password"
-          />
-          <Button disabled={loading}>LOGIN</Button>
-          <Error>{ message }</Error>
-          <RouterLink to={'/forgot-password'}><Link>DO NOT YOU REMEMBER THE PASSWORD?</Link></RouterLink>
-          <RouterLink to={'/register'}><Link>CREATE A NEW ACCOUNT</Link></RouterLink>
+          <Button disabled={loading}>RESET PASSWORD</Button>
+          {/* <Error>{ message }</Error> */}
         </Form>
       </Wrapper>
     </Container>
   );
 };
 
-export default Login;
+export default Forgot;

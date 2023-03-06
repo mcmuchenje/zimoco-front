@@ -5,9 +5,11 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import { mobile } from "../responsive";
-import { Navigate } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 
 import AuthService from "../services/auth.service";
+import { useState, useEffect } from "react";
+import ProductService from "../services/product.service";
 
 const Container = styled.div``;
 
@@ -47,40 +49,6 @@ const Price = styled.span`
   font-size: 40px;
 `;
 
-const FilterContainer = styled.div`
-  width: 50%;
-  margin: 30px 0px;
-  display: flex;
-  justify-content: space-between;
-  ${mobile({ width: "100%" })}
-`;
-
-const Filter = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const FilterTitle = styled.span`
-  font-size: 20px;
-  font-weight: 200;
-`;
-
-const FilterColor = styled.div`
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: ${(props) => props.color};
-  margin: 0px 5px;
-  cursor: pointer;
-`;
-
-const FilterSize = styled.select`
-  margin-left: 10px;
-  padding: 5px;
-`;
-
-const FilterSizeOption = styled.option``;
-
 const AddContainer = styled.div`
   width: 50%;
   display: flex;
@@ -119,6 +87,24 @@ const Button = styled.button`
 `;
 
 const Product = () => {
+
+  let { id } = useParams();
+  const [product, setProduct] = useState([]);
+
+  useEffect(() => {
+    retreiveProduct();
+  }, [])
+
+  const retreiveProduct = () => {
+    ProductService.get(id)
+      .then(response => {
+        console.log(response.data);
+        setProduct(response.data)
+      })
+      .catch(e => {
+        console.log(e);
+      })
+  }
   const currentUser = AuthService.getCurrentUser();
 
     if (!currentUser) {
@@ -134,7 +120,7 @@ const Product = () => {
           <Image src="https://www.harley-davidson.com/content/dam/h-d/images/product-images/parts/batch-2/29400297/29400297_TT.jpg" />
         </ImgContainer>
         <InfoContainer>
-          <Title>Air Filter</Title>
+          <Title>{product.description}</Title>
           <Desc>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
             venenatis, dolor in finibus malesuada, lectus ipsum porta nunc, at

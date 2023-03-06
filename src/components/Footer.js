@@ -130,7 +130,7 @@ import {
             <Phone style={{marginRight:"10px"}}/> +263772198816
           </ContactItem>
           <ContactItem>
-            <MailOutline style={{marginRight:"10px"}} /> muchenje.munyaradzi@gmail.com
+            <MailOutline style={{marginRight:"10px"}} /> ashie@zimoco.co.zw
           </ContactItem>
           <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
         </Right>

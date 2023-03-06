@@ -1,6 +1,8 @@
+import React from "react";
 import styled from "styled-components";
-import { popularProducts } from "../data";
-import Product from "./Product";
+import ProductService from "../services/product.service";
+import { useState, useEffect } from "react";
+import Product from './Product';
 
 const Container = styled.div`
     padding: 20px;
@@ -10,9 +12,27 @@ const Container = styled.div`
 `;
 
 const Products = () => {
+
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    retrieveProducts();
+  }, []);
+
+  const retrieveProducts = () => {
+    ProductService.getAll()
+      .then(response => {
+        setProducts(response.data.rows);
+        console.log(response.data);
+      })
+      .catch(e => {
+        console.log(e.message);
+      })
+  }
+
   return (
     <Container>
-      {popularProducts.map((item) => (
+      {products.map((item) => (
         <Product item={item} key={item.id} />
       ))}
     </Container>

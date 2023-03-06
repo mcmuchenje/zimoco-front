@@ -1,5 +1,8 @@
+import { useState } from "react";
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import AuthService from "../services/auth.service";
+import { Link, useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   width: 100vw;
@@ -54,24 +57,140 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
+const Error = styled.p`
+  color: red;
+`;
+
 const Register = () => {
+
+  let navigate = useNavigate();
+
+  const [firstname, setFirstname] = useState('');
+  const [lastname, setLastname] = useState('');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('');
+  const [confirmpassword, setConfirmPassword] = useState('');
+  const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const onChangeFirstname = (e) => {
+    const firstname = e.target.value;
+    setFirstname(firstname);
+  };
+
+  const onChangeLastname = (e) => {
+    const lastname = e.target.value;
+    setLastname(lastname);
+  };
+
+  const onChangeUsername = (e) => {
+    const username = e.target.value;
+    setUsername(username);
+  };
+
+  const onChangeEmail = (e) => {
+    const email = e.target.value;
+    setEmail(email);
+  };
+
+  const onChangePassword = (e) => {
+    const password = e.target.value;
+    setPassword(password);
+  };
+
+  const onChangeConfirmPassword = (e) => {
+    const confirmpassword = e.target.value;
+    setConfirmPassword(confirmpassword);
+  };
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+
+    setMessage('')
+    setLoading(true)
+
+    if (password !== confirmpassword) {
+      setMessage('Passwords do not match');
+    }
+
+    AuthService.register(firstname, lastname, username, email, password)
+      .then(response => {
+        navigate("/products");
+        window.location.reload();
+      })
+      .catch(e => {
+        const resMessage =
+          (e.response &&
+              e.response.data &&
+              e.response.data.message) ||
+            e.message ||
+            e.toString();
+
+          setLoading(false);
+          setMessage(resMessage);
+      }) 
+  }
+
   return (
     <Container>
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
-        <Form>
-          <Input placeholder="name" />
-          <Input placeholder="last name" />
-          <Input placeholder="username" />
-          <Input placeholder="email" />
-          <Input placeholder="password" />
-          <Input placeholder="confirm password" />
+        <Form onSubmit={handleRegister}>
+          <Input 
+            type="text"
+            placeholder="first name"
+            name="firstname"
+            value={firstname}
+            onChange={onChangeFirstname} 
+          />
+          <Input 
+            type="text"
+            placeholder="last name"
+            name="lastname"
+            value={lastname}
+            onChange={onChangeLastname} 
+          />
+          <Input
+            type="text"
+            placeholder="username"
+            name="username"
+            value={username}
+            onChange={onChangeUsername}
+          />
+          <Input
+            type="email"
+            placeholder="email"
+            name="email"
+            value={email}
+            onChange={onChangeEmail} 
+          />
+          <Input
+            type="password"
+            placeholder="password"
+            name="password"
+            value={password}
+            onChange={onChangePassword} 
+          />
+          <Input
+            type="password"
+            placeholder="confirm password"
+            name="confirmpassword"
+            value={confirmpassword}
+            onChange={onChangeConfirmPassword} 
+          />
           <Agreement>
             By creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b>
           </Agreement>
           <Button>CREATE</Button>
         </Form>
+        { message && 
+          <>
+            <br/>
+            <Error>{ message }</Error>
+          </>          
+        }
       </Wrapper>
     </Container>
   );

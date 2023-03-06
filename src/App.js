@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Product from "./pages/Product";
+import Forgot from "./pages/Forgot";
 
 const App = () => {
   return (
@@ -12,9 +13,10 @@ const App = () => {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/product/" element={<ProductList />} />
-      <Route path="/product/:id" element={<Product />} />
+      <Route path="/products/" element={<ProductList />} />
+      <Route path="/products/:id" element={<Product />} />
       <Route path="/profile" element={<Profile />} />
+      <Route path="/forgot-password" element={<Forgot />} />
     </Routes>
   )
 }
