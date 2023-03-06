@@ -25,18 +25,18 @@ export const sliderItems = [
   export const categories = [
     {
       id: 1,
-      img: "https://images.pexels.com/photos/5886041/pexels-photo-5886041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      title: "SHIRT STYLE!",
+      img: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fjapanparts.com.bd%2Fproducts%2Ftoyota-air-filter-honda-c-rv&psig=AOvVaw2JCmaI8lyETUYIQEDtIxMA&ust=1678168831623000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCNCA0ZrQxv0CFQAAAAAdAAAAABAE",
+      title: "AIR FILTER!",
     },
     {
       id: 2,
-      img: "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      title: "LOUNGEWEAR LOVE",
+      img: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.rheinmetall-automotive.com%2Fen%2Fpress%2Fpress-releases%2Fnews-detail%2Fnews%2Felectric-oil-pump-a-strategic-component-for-e-motors-and-electrified-powertrains%2F&psig=AOvVaw29_vj8bIC3TCnK7NKyoqxq&ust=1678168796437000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCKCQhIrQxv0CFQAAAAAdAAAAABAJ",
+      title: "OIL PUMP",
     },
     {
       id: 3,
-      img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-      title: "LIGHT JACKETS",
+      img: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.amazon.in%2FUAC-Universal-Air-Conditioner-Compressor%2Fdp%2FB00DCDH7UI&psig=AOvVaw19mTZ2vSa34z1ukmYNnuI7&ust=1678168901517000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCPic-bvQxv0CFQAAAAAdAAAAABAE",
+      title: "MORE PARTS",
     },
   ];
 
