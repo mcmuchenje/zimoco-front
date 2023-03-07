@@ -1,7 +1,7 @@
 import axios from "axios";
 import authHeader from "../auth-header";
 
-const API_URL = "http://localhost:8080/api";
+const API_URL = "http://45.77.53.86:8080/api";
 
 const getAll = async () => {
   return await axios.get(API_URL + "/products", { headers: authHeader() });
