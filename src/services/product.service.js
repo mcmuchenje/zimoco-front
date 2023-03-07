@@ -11,10 +11,15 @@ const get = async (id) => {
   return await axios.get(API_URL + `/products/${id}`, { headers: authHeader() });
 }
 
+const findByPartNumber = async (partnumber) => {
+  return await axios.get(`/products?partnumber=${partnumber}`, { headers: authHeader() })
+}
+
 
 const ProductService = {
   get,
-  getAll
+  getAll,
+  findByPartNumber
 }
 
 export default ProductService;

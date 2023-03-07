@@ -1,10 +1,11 @@
 import styled from "styled-components"
 import { mobile } from "../responsive"
-import React from "react";
+import React, { useState } from "react";
 import { Search, ShoppingCartOutlined } from "@mui/icons-material"
 import { Badge } from "@mui/material";
 import { Link, Navigate, redirect } from "react-router-dom";
 import AuthService from "../services/auth.service";
+import ProductService from "../services/product.service";
 
 const Container = styled.div`
     height: 60px;
@@ -64,19 +65,41 @@ const MenuItem = styled.div`
 
 const logOut = () => {
   AuthService.logout();
-  return redirect('/login')
 };
 
 const NavBar = () => {
+
+  const [search, setSearch] = useState();
+
+  const onChangeSearch = (e) => {
+    const search = e.target.value;
+    console.log(search)
+    setSearch(search);
+  }
+
   const currentUser = AuthService.getCurrentUser();
+
+  const handleSearch = () =>{
+    if (!currentUser) {
+      return <Navigate to={'/login'} />
+    }
+
+    ProductService.findAll(search)
+      .then(response => {
+        console.log(response.data)
+      })
+      .catch(err => {
+        console.log(err.message)
+      })
+  }
 
     return (
         <Container>
             <Wrapper>
                 <Left>
                     <SearchContainer>
-                        <Input placeholder="VIN/PART NUMBER" />
-                        <Search style={{ color: "gray", fontSize: 16 }} />
+                        <Input onChange={onChangeSearch} placeholder="VIN/PART NUMBER" />
+                        <Search style={{ color: "gray", fontSize: 16 }} />                        
                     </SearchContainer>
                 </Left>
                 <Center>
